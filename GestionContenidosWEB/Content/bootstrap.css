@@ -319,7 +319,7 @@ body {
   font-size: 14px;
   line-height: 1.428571429;
   color: #333333;
-  background-color: #ffffff;
+  background-color: #fff;
 }
 
 input,
@@ -4512,13 +4512,13 @@ textarea.input-group-sm > .input-group-btn > .btn {
 
 .navbar-inverse {
   /*background-color: rgba(139, 195, 74, 0.0392156862745098);*/
-  background-color: #fafdf8 !important;/***/
+  background-color: #fff !important;/***/
   border-color: #080808;
 }
 
 .navbar-inverse .navbar-brand {
   color: #8BC34A;
-  background-color: #fafdf8;/***/
+  background-color: #fff;/***/
 }
 
 .navbar-inverse .navbar-brand:hover,
@@ -4529,7 +4529,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 
 .navbar-inverse .navbar-text {
   color: #999999;
-      background-color: #fafdf8;/***/
+      background-color: #fff;/***/
 }
 
 .navbar-inverse .navbar-nav > li > a {
@@ -4541,7 +4541,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 .navbar-inverse .navbar-nav > li > a:focus {
   color:#000000;
   /*background-color: transparent;*/
-  background-color: #fafdf8;
+  background-color: #fff;
 }
 
 .navbar-inverse .navbar-nav > .active > a,
@@ -4556,7 +4556,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 .navbar-inverse .navbar-nav > .disabled > a:focus {
   color: #444444;
   /*background-color: transparent;*/
-      background-color: #fafdf8;
+      background-color: #fff;
 }
 
 .navbar-inverse .navbar-toggle {

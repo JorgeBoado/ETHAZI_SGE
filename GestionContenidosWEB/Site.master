@@ -35,10 +35,14 @@
         }
         table{
             text-align:center;
+            
         }
         .filt{
             max-width:150px;
         }
+        #gmap_canvas{
+                        visibility:visible !important;
+                    }
     </style>
 </head>
 

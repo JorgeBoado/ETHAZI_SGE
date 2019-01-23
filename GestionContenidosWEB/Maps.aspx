@@ -5,13 +5,11 @@
     <br />
     <div class="row">
         <div class="col-4">
-
         </div>
         <div class="col-4">
             <asp:Label ID="nameTi" runat="server" CssClass="h1"></asp:Label>
         </div>
         <div class="col-4">
-
         </div>
     </div>
     <br />
@@ -21,11 +19,15 @@
         </div>
         <div class="col-10">
             <div style='overflow: hidden; height: 600px; width: 100%;'>
-                <div id='gmap_canvas' style='height: 600px; width: 100%;'></div>
+                <div id='gmap_canvas' style='visibility:visible !important;height: 600px; width: 100%;'></div>
                 <style>
+                    #gmap_canvas{
+                        visibility:visible !important;
+                    }
                     #gmap_canvas img {
                         max-width: none !important;
                         background: none !important;
+                        
                     }
                 </style>
             </div>

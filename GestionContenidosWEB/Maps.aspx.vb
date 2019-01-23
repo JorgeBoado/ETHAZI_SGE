@@ -6,11 +6,11 @@ Partial Class Maps
     Dim coor, name, address, postalcode As String
     
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
-        If Not Page.IsPostBack Then
-            idUser = Request.Params("id")
-            getDatos()
-            fillMap()
-        End If
+        'If Not Page.IsPostBack Then
+        idUser = Request.Params("id")
+        getDatos()
+        fillMap()
+        'End If
         Me.nameTi.Text = name
     End Sub
 
