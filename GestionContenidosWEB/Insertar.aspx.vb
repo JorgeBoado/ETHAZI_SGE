@@ -4,12 +4,17 @@ Partial Class Editar
 
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
-        If Not IsPostBack Then
-            fillType()
-            fillCategory()
-            fillMunicipality()
-            fillCP(Me.municipalityIn.SelectedValue.ToString)
+        If Not Conexion.userCon = False Then
+            If Not IsPostBack Then
+                fillType()
+                fillCategory()
+                fillMunicipality()
+                fillCP(Me.municipalityIn.SelectedValue.ToString)
+            End If
+        Else
+            Response.Redirect("~/InicioSesion.aspx")
         End If
+        
     End Sub
     Protected Sub fillType()
         Conexion.conectar()
@@ -54,7 +59,6 @@ Partial Class Editar
     Protected Sub fillMunicipality()
         Conexion.conectar()
         Try
-
             Dim sql As String = "SELECT DISTINCT municipality FROM postalCode ORDER BY municipality ASC"
             Dim cmd As New MySqlCommand(sql, Conexion.cnn1)
             Dim dr As MySqlDataReader = Nothing
@@ -76,7 +80,6 @@ Partial Class Editar
     Protected Sub fillCM(municipality As String)
         Conexion.conectar()
         Try
-
             Dim sql As String = "SELECT DISTINCT municipalitycode FROM postalCode WHERE municipality = '" & municipality & "'"
             Dim cmd As New MySqlCommand(sql, Conexion.cnn1)
             Dim dr As MySqlDataReader = Nothing
@@ -97,7 +100,6 @@ Partial Class Editar
         Me.cpIn.Items.Clear()
         Conexion.conectar()
         Try
-
             Dim sql As String = "SELECT DISTINCT postalcode FROM postalCode WHERE municipalitycode=" & Me.cmIn.Text & " AND municipality='" & municipality & "' ORDER BY postalcode ASC"
             Dim cmd As New MySqlCommand(sql, Conexion.cnn1)
             Dim dr As MySqlDataReader = Nothing
@@ -118,10 +120,6 @@ Partial Class Editar
 
     Protected Sub municipalityIn_SelectedIndexChanged(sender As Object, e As EventArgs) Handles municipalityIn.SelectedIndexChanged
         fillCM(Me.municipalityIn.SelectedValue.ToString)
-    End Sub
-
-    Protected Sub canInsertar_Click(sender As Object, e As EventArgs) Handles canInsertar.Click
-        Response.Redirect("~\PaginaPrincipal.aspx")
     End Sub
 
     Protected Sub finInsertar_Click(sender As Object, e As EventArgs) Handles finInsertar.Click

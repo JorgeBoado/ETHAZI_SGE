@@ -6,14 +6,18 @@ Partial Class Editar
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
 
-        idUsuario = Request.Params("id")
+        If Not Conexion.userCon = False Then
+            idUsuario = Request.Params("id")
 
-        If Not Page.IsPostBack Then
-            fillTodo()
-            fillType()
-            fillCategory()
-            fillMunicipality(codeM, codeP)
-            fillCM(Me.municipalityAc.SelectedValue.ToString)
+            If Not Page.IsPostBack Then
+                fillTodo()
+                fillType()
+                fillCategory()
+                fillMunicipality(codeM, codeP)
+                fillCM(Me.municipalityAc.SelectedValue.ToString)
+            End If
+        Else
+            Response.Redirect("~/InicioSesion.aspx")
         End If
 
     End Sub

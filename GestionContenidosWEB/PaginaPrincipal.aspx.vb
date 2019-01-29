@@ -6,18 +6,20 @@ Partial Class PaginaPrincipal
     Dim lat, lon, name, address, postalcode As String
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
-        Me.GridView1.AutoGenerateSelectButton = True
-        Me.GridView1.AutoGenerateColumns = True
 
-        If Not IsPostBack Then
-            mostrarTabla()
-            fillTerritoryFiltro()
-            fillMunicipioFiltro(Me.territoryFiltro.SelectedValue.ToString)
-            fillCPFiltro(Me.municipioFiltro.SelectedValue.ToString)
-            fillTypeFiltro()
-            fillCategoryFiltro()
+        If Not Conexion.userCon = False Then
+            If Not IsPostBack Then
+                mostrarTabla()
+                fillTerritoryFiltro()
+                fillMunicipioFiltro(Me.territoryFiltro.SelectedValue.ToString)
+                fillCPFiltro(Me.municipioFiltro.SelectedValue.ToString)
+                fillTypeFiltro()
+                fillCategoryFiltro()
+            End If
+        Else
+            Response.Redirect("~/InicioSesion.aspx")
         End If
-        
+            
     End Sub
 
     Private Sub GridView1_PageIndexChanging(sender As Object, e As GridViewPageEventArgs) Handles GridView1.PageIndexChanging
@@ -32,30 +34,27 @@ Partial Class PaginaPrincipal
         Dim sql As String = Nothing
 
         If Not terr = Nothing And terr <> "-Todas-" And muni = Nothing Or muni = "-Todas-" Then
-            sql = "SELECT id as ID,signatura as Firma,name as Nombre,CONCAT(SUBSTRING(description,1,50),'...') as Descripcion,type as Tipo,phone as Telefono,address as Direccion,marks as Marca, postalcode as CP,municipalitycode as CM,coordinates as Coordenadas,category as Categoria,turismemail as Email,web as WEB,capacity as Capacidad,friendlyurl as FriendlyUrl,physicalurl as PhysicalUrl,zipfile as ZipFile FROM lodging WHERE postalcode IN (SELECT postalcode FROM postalCode WHERE territory = '" & terr & "')"
+            sql = "SELECT id as ID,signatura as Signatura,name as Name,CONCAT(SUBSTRING(description,1,50),'...') as Description,type as Type,phone as Phone,address as Address,marks as Mark, postalcode as PC,municipalitycode as MC,coordinates as Coordinates,category as Category,turismemail as Email,web as WEB,capacity as Capacity,friendlyurl as FriendlyUrl,physicalurl as PhysicalUrl,zipfile as ZipFile FROM lodging WHERE postalcode IN (SELECT postalcode FROM postalCode WHERE territory = '" & terr & "')"
         ElseIf Not terr = Nothing And terr <> "-Todas-" And muni = "-Todas-" And cp = "-Todas-" Then
-            sql = "SELECT id as ID,signatura as Firma,name as Nombre,CONCAT(SUBSTRING(description,1,50),'...') as Descripcion,type as Tipo,phone as Telefono,address as Direccion,marks as Marca, postalcode as CP,municipalitycode as CM,coordinates as Coordenadas,category as Categoria,turismemail as Email,web as WEB,capacity as Capacidad,friendlyurl as FriendlyUrl,physicalurl as PhysicalUrl,zipfile as ZipFile FROM lodging WHERE postalcode IN (SELECT postalcode FROM postalCode WHERE territory = '" & terr & "')"
+            sql = "SELECT id as ID,signatura as Signatura,name as Name,CONCAT(SUBSTRING(description,1,50),'...') as Description,type as Type,phone as Phone,address as Address,marks as Mark, postalcode as PC,municipalitycode as MC,coordinates as Coordinates,category as Category,turismemail as Email,web as WEB,capacity as Capacity,friendlyurl as FriendlyUrl,physicalurl as PhysicalUrl,zipfile as ZipFile FROM lodging WHERE postalcode IN (SELECT postalcode FROM postalCode WHERE territory = '" & terr & "')"
         ElseIf Not terr = Nothing And terr <> "-Todas-" And Not muni = Nothing And muni <> "-Todas-" And cp = Nothing Or cp = "-Todas-" Then
-            sql = "SELECT id as ID,signatura as Firma,name as Nombre,CONCAT(SUBSTRING(description,1,50),'...') as Descripcion,type as Tipo,phone as Telefono,address as Direccion,marks as Marca, postalcode as CP,municipalitycode as CM,coordinates as Coordenadas,category as Categoria,turismemail as Email,web as WEB,capacity as Capacidad,friendlyurl as FriendlyUrl,physicalurl as PhysicalUrl,zipfile as ZipFile FROM lodging WHERE postalcode IN (SELECT postalcode FROM postalCode WHERE territory = '" & terr & "' AND municipality='" & muni & "')"
+            sql = "SELECT id as ID,signatura as Signatura,name as Name,CONCAT(SUBSTRING(description,1,50),'...') as Description,type as Type,phone as Phone,address as Address,marks as Mark, postalcode as PC,municipalitycode as MC,coordinates as Coordinates,category as Category,turismemail as Email,web as WEB,capacity as Capacity,friendlyurl as FriendlyUrl,physicalurl as PhysicalUrl,zipfile as ZipFile FROM lodging WHERE postalcode IN (SELECT postalcode FROM postalCode WHERE territory = '" & terr & "' AND municipality='" & muni & "')"
         ElseIf Not muni = Nothing And muni <> "-Todas-" And Not cp = Nothing And cp <> "Todas" Then
-            sql = "SELECT id as ID,signatura as Firma,name as Nombre,CONCAT(SUBSTRING(description,1,50),'...') as Descripcion,type as Tipo,phone as Telefono,address as Direccion,marks as Marca, postalcode as CP,municipalitycode as CM,coordinates as Coordenadas,category as Categoria,turismemail as Email,web as WEB,capacity as Capacidad,friendlyurl as FriendlyUrl,physicalurl as PhysicalUrl,zipfile as ZipFile FROM lodging WHERE postalcode IN (SELECT postalcode FROM postalCode WHERE postalcode='" & cp & "')"
+            sql = "SELECT id as ID,signatura as Signatura,name as Name,CONCAT(SUBSTRING(description,1,50),'...') as Description,type as Type,phone as Phone,address as Address,marks as Mark, postalcode as PC,municipalitycode as MC,coordinates as Coordinates,category as Category,turismemail as Email,web as WEB,capacity as Capacity,friendlyurl as FriendlyUrl,physicalurl as PhysicalUrl,zipfile as ZipFile FROM lodging WHERE postalcode IN (SELECT postalcode FROM postalCode WHERE postalcode='" & cp & "')"
         Else
-            sql = "SELECT id as ID,signatura as Firma,name as Nombre,CONCAT(SUBSTRING(description,1,50),'...') as Descripcion,type as Tipo,phone as Telefono,address as Direccion,marks as Marca, postalcode as CP,municipalitycode as CM,coordinates as Coordenadas,category as Categoria,turismemail as Email,web as WEB,capacity as Capacidad,friendlyurl as FriendlyUrl,physicalurl as PhysicalUrl,zipfile as ZipFile FROM lodging WHERE 1 = 1"
+            sql = "SELECT id as ID,signatura as Signatura,name as Name,CONCAT(SUBSTRING(description,1,50),'...') as Description,type as Type,phone as Phone,address as Address,marks as Mark, postalcode as PC,municipalitycode as MC,coordinates as Coordinates,category as Category,turismemail as Email,web as WEB,capacity as Capacity,friendlyurl as FriendlyUrl,physicalurl as PhysicalUrl,zipfile as ZipFile FROM lodging WHERE 1 = 1"
         End If
 
         If Not nombre = Nothing Then
-            sql = "SELECT id as ID,signatura as Firma,name as Nombre,CONCAT(SUBSTRING(description,1,50),'...') as Descripcion,type as Tipo,phone as Telefono,address as Direccion,marks as Marca, postalcode as CP,municipalitycode as CM,coordinates as Coordenadas,category as Categoria,turismemail as Email,web as WEB,capacity as Capacidad,friendlyurl as FriendlyUrl,physicalurl as PhysicalUrl,zipfile as ZipFile FROM lodging WHERE name LIKE '%" & nombre & "%'"
+            sql = "SELECT id as ID,signatura as Signatura,name as Name,CONCAT(SUBSTRING(description,1,50),'...') as Description,type as Type,phone as Telefono,address as Address,marks as Mark, postalcode as CP,municipalitycode as CM,coordinates as Coordinates,category as Category,turismemail as Email,web as WEB,capacity as Capacity,friendlyurl as FriendlyUrl,physicalurl as PhysicalUrl,zipfile as ZipFile FROM lodging WHERE name LIKE '%" & nombre & "%'"
         End If
 
         If Not type = Nothing And type <> "-Todas-" And cat = Nothing Or cat = "-Todas-" Then
             sql &= " AND type='" & type & "'"
-            MsgBox("1")
         ElseIf Not cat = Nothing And cat <> "-Todas-" And type = Nothing Or type = "-Todas-" Then
             sql &= " AND category='" & cat & "'"
-            MsgBox("2")
         ElseIf Not cat = Nothing And cat <> "-Todas-" And Not cat = Nothing And cat <> "-Todas-" Then
             sql &= " AND category='" & cat & "' AND type='" & type & "'"
-            MsgBox("3")
         End If
 
         Dim commando As New MySqlCommand(sql, Conexion.cnn1)
@@ -75,17 +74,15 @@ Partial Class PaginaPrincipal
     Protected Sub btn_eliminar_Click(sender As Object, e As EventArgs) Handles btn_eliminar.Click
 
         Conexion.conectar()
-        Me.GridView1.AutoGenerateSelectButton = True
         Dim sql As String
         Try
             sql = "DELETE FROM lodging WHERE id = " & Me.GridView1.SelectedRow.Cells(1).Text
             Dim commando As New MySqlCommand(sql, Conexion.cnn1)
             commando.ExecuteNonQuery()
         Catch ex As Exception
-
+            MsgBox(ex.ToString)
         End Try
         mostrarTabla()
-
         Conexion.desconectar()
     End Sub
 
@@ -287,35 +284,67 @@ Partial Class PaginaPrincipal
     End Sub
 
     Protected Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox1.CheckedChanged
-        Me.CheckBox2.Checked = False
-        Me.CheckBox3.Checked = False
-        Me.btn_buscarFiltro.Enabled = False
-        Me.buscarFiltro.Enabled = False
-        Me.territoryFiltro.Enabled = True
-        Me.TipoFiltro.Enabled = False
-        Me.CategoriaFiltro.Enabled = False
-        mostrarTabla()
+
+        If CheckBox1.Checked = True Then
+            Me.CheckBox2.Checked = False
+            Me.CheckBox3.Checked = False
+            Me.btn_buscarFiltro.Enabled = False
+            Me.buscarFiltro.Enabled = False
+            Me.territoryFiltro.Enabled = True
+            Me.TipoFiltro.Enabled = False
+            Me.CategoriaFiltro.Enabled = False
+            mostrarTabla()
+        Else
+            Me.territoryFiltro.SelectedValue = "-Todas-"
+            Me.municipioFiltro.SelectedValue = "-Todas-"
+            Me.CPFiltro.SelectedValue = "-Todas-"
+            Me.territoryFiltro.Enabled = False
+            Me.municipioFiltro.Enabled = False
+            Me.CPFiltro.Enabled = False
+            mostrarTabla()
+        End If
+
     End Sub
 
     Protected Sub CheckBox2_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox2.CheckedChanged
-        Me.CheckBox1.Checked = False
-        Me.CheckBox3.Checked = False
-        Me.btn_buscarFiltro.Enabled = False
-        Me.buscarFiltro.Enabled = False
-        Me.territoryFiltro.Enabled = False
-        Me.TipoFiltro.Enabled = True
-        Me.CategoriaFiltro.Enabled = True
-        mostrarTabla()
+        If CheckBox2.Checked = True Then
+            Me.CheckBox1.Checked = False
+            Me.CheckBox3.Checked = False
+            Me.btn_buscarFiltro.Enabled = False
+            Me.buscarFiltro.Enabled = False
+            Me.territoryFiltro.Enabled = False
+            Me.TipoFiltro.Enabled = True
+            Me.CategoriaFiltro.Enabled = True
+            mostrarTabla()
+        Else
+            Me.TipoFiltro.SelectedValue = "-Todas-"
+            Me.CategoriaFiltro.SelectedValue = "-Todas-"
+            Me.TipoFiltro.Enabled = False
+            Me.CategoriaFiltro.Enabled = False
+            mostrarTabla()
+        End If
+       
     End Sub
 
     Protected Sub CheckBox3_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox3.CheckedChanged
-        Me.CheckBox1.Checked = False
-        Me.CheckBox2.Checked = False
-        Me.btn_buscarFiltro.Enabled = True
-        Me.buscarFiltro.Enabled = True
-        Me.TipoFiltro.Enabled = False
-        Me.CategoriaFiltro.Enabled = False
-        Me.territoryFiltro.Enabled = False
+
+        If CheckBox3.Checked = True Then
+            Me.CheckBox1.Checked = False
+            Me.CheckBox2.Checked = False
+            Me.btn_buscarFiltro.Enabled = True
+            Me.buscarFiltro.Enabled = True
+            Me.TipoFiltro.Enabled = False
+            Me.CategoriaFiltro.Enabled = False
+            Me.territoryFiltro.Enabled = False
+            mostrarTabla()
+        Else
+            Me.buscarFiltro.Text = ""
+            Me.buscarFiltro.Enabled = False
+            Me.btn_buscarFiltro.Enabled = False
+            mostrarTabla()
+        End If
+
+       
     End Sub
 
     Protected Sub btn_buscarFiltro_Click(sender As Object, e As EventArgs) Handles btn_buscarFiltro.Click

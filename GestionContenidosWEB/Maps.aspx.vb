@@ -6,12 +6,14 @@ Partial Class Maps
     Dim coor, name, address, postalcode As String
     
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
-        'If Not Page.IsPostBack Then
-        idUser = Request.Params("id")
-        getDatos()
-        fillMap()
-        'End If
-        Me.nameTi.Text = name
+        If Not Conexion.userCon = False Then
+            idUser = Request.Params("id")
+            getDatos()
+            fillMap()
+            Me.nameTi.Text = name
+        Else
+            Response.Redirect("~/InicioSesion.aspx")
+        End If
     End Sub
 
     Protected Sub getDatos()

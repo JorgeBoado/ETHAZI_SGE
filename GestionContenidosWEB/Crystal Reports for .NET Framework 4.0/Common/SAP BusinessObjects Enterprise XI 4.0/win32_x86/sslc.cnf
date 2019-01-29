@@ -1,0 +1,102 @@
+#
+# sslc.cnf	- RSA BSAFE SSL-C sample configuration file
+#
+
+RANDFILE		= .rnd
+#RANDFILE		= $ENV::HOME/.rnd
+#oid_file		= $ENV::HOME/.oid
+
+####################################################################
+[ ca ]
+default_ca	= CA_default		# The default ca section
+
+####################################################################
+[ CA_default ]
+
+dir		= ./demoCA		# Location for everything
+certs		= $dir/certs		# Location of issued certs are kept
+crl_dir		= $dir/crl		# Location of issued crl are kept
+database	= $dir/index.txt	# database index file.
+new_certs_dir	= $dir/newcerts		# default place for new certs.
+
+certificate	= $dir/cacert.pem 	# CA certificate
+serial		= $dir/serial 		# Current serial number
+crl		= $dir/crl.pem 		# Current CRL
+private_key	= $dir/private/cakey.pem# Private key
+RANDFILE	= $dir/private/.rand	# Private random number file
+
+x509_extensions	= x509v3_extensions	# Extentions to add to the cert
+default_days	= 365			# Duration to certify for
+default_crl_days= 30			# Time before next CRL
+default_md	= SHA1			# Message digest to use.
+preserve	= no			# Keep passed DN ordering?
+
+# A few different ways of specifying how similar the request should look
+# For type CA, the listed attributes must be the same, and the optional
+# and supplied fields are just that 
+policy		= policy_match
+
+# For the CA policy
+[ policy_match ]
+countryName		= match
+stateOrProvinceName	= match
+organizationName	= match
+organizationalUnitName	= optional
+commonName		= supplied
+emailAddress		= optional
+
+# For the 'anything' policy
+# At this point in time, you must list all acceptable 'object'
+# types.
+[ policy_anything ]
+countryName		= optional
+stateOrProvinceName	= optional
+localityName		= optional
+organizationName	= optional
+organizationalUnitName	= optional
+commonName		= supplied
+emailAddress		= optional
+
+####################################################################
+[ req ]
+default_bits		= 1024
+default_keyfile 	= privkey.pem
+distinguished_name	= req_distinguished_name
+attributes		= req_attributes
+
+[ req_distinguished_name ]
+countryName			= Country Name (2 letter code)
+countryName_default		= AU
+countryName_min			= 2
+countryName_max			= 2
+
+stateOrProvinceName		= State or Province Name (full name)
+stateOrProvinceName_default	= Some-State
+
+localityName			= Locality Name (eg, city)
+
+0.organizationName		= Organization Name (eg, company)
+0.organizationName_default	= Some-Organization Pty Ltd
+
+organizationalUnitName		= Organizational Unit Name (eg, section)
+#organizationalUnitName_default	=
+
+commonName			= Common Name (eg, YOUR name)
+commonName_max			= 64
+
+emailAddress			= Email Address
+emailAddress_max		= 40
+
+SET-ex3				= SET extension number 3
+
+[ req_attributes ]
+challengePassword		= A challenge password
+challengePassword_min		= 4
+challengePassword_max		= 20
+
+unstructuredName		= An optional company name
+
+[ x509v3_extensions ]
+
+nsComment			= "Generated with RSA BSAFE SSL-C"
+

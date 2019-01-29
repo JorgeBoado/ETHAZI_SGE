@@ -1,13 +1,13 @@
 ﻿<%@ Page Title="" Language="VB" MasterPageFile="~/Site.master" AutoEventWireup="false" CodeFile="PaginaPrincipal.aspx.vb" Inherits="PaginaPrincipal" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    
+      
     <br />
     <br />
     <div class="row">
         <div class="col-md-2">
             <label>
-                FILTROS
+                Filters
             </label>
         </div>
     </div>
@@ -23,15 +23,15 @@
             </label>
         </div>
         <div class="col-md-3">
-            <label>Territorio</label>
+            <label>Territory</label>
             <asp:DropDownList ID="territoryFiltro" runat="server" CssClass="form-control filt" AutoPostBack="True" Enabled="False"></asp:DropDownList>
         </div>
         <div class="col-md-3">
-            <label>Municipio</label>
+            <label>Municipality</label>
             <asp:DropDownList ID="municipioFiltro" runat="server" CssClass="form-control filt" AutoPostBack="True" Enabled="False"></asp:DropDownList>
         </div>
         <div class="col-md-2">
-            <label>CP</label>
+            <label>PC</label>
             <asp:DropDownList ID="CPFiltro" runat="server" CssClass="form-control filt" AutoPostBack="True" Enabled="False"></asp:DropDownList>
         </div>
     </div>
@@ -42,11 +42,11 @@
             </label>
         </div>
         <div class="col-md-2">
-            <label>Tipo</label>
+            <label>Type</label>
             <asp:DropDownList ID="TipoFiltro" runat="server" CssClass="form-control filt" AutoPostBack="True" Enabled="False"></asp:DropDownList>
         </div>
         <div class="col-md-2">
-            <label>Categoria</label>
+            <label>Category</label>
             <asp:DropDownList ID="CategoriaFiltro" runat="server" CssClass="form-control filt" AutoPostBack="True" Enabled="False"></asp:DropDownList>
         </div>
     </div>
@@ -57,21 +57,21 @@
             </label>
         </div>
         <div class="col-md-3">
-            <label>Nombre</label>
+            <label>Name</label>
             <asp:TextBox ID="buscarFiltro" runat="server" CssClass="form-control filt" Enabled="false"></asp:TextBox>
 
         </div>
         <div class="col-md-2">
             <label></label>
-            <asp:Button ID="btn_buscarFiltro" runat="server" Text="Buscar" CssClass="btn btn-primary" Enabled="false" />
+            <asp:Button ID="btn_buscarFiltro" runat="server" Text="Search" CssClass="btn btn-primary" Enabled="false" />
         </div>
     </div>
     <hr />
     <section>
-        <asp:Button ID="btn_actualizar" runat="server" Text="Actualizar" CssClass="btn btn-primary" Enabled="False" />
-        <asp:Button ID="btn_insertar" runat="server" Text="Insertar" CssClass="btn btn-primary" />
-        <asp:Button ID="btn_eliminar" runat="server" Text="Eliminar" CssClass="btn btn-primary" Enabled="False" />
-        <asp:Button ID="btn_mapa" runat="server" Text="Ver Mapa" CssClass="btn btn-primary" Enabled="False" />
+        <asp:Button ID="btn_actualizar" runat="server" Text="Update" CssClass="btn btn-primary" Enabled="False" />
+        <asp:Button ID="btn_insertar" runat="server" Text="Insert" CssClass="btn btn-primary" />
+        <asp:Button ID="btn_eliminar" runat="server" Text="Delete" CssClass="btn btn-primary" Enabled="False" />
+        <asp:Button ID="btn_mapa" runat="server" Text="Show map" CssClass="btn btn-primary" Enabled="False" />
     </section>
     <asp:Panel ID="Panel1" runat="server">
         <br />

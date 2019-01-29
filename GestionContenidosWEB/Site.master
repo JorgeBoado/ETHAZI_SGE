@@ -79,27 +79,27 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" runat="server" href="~/">
+                    <a class="navbar-brand" runat="server" href="~/PaginaPrincipal.aspx">
                         <img style="height: 20px;" src="imagenes/New%20Project.png" /></a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a runat="server" href="~/">Inicio</a></li>
-                        <li><a runat="server" href="~/VistaMapa">Mapa</a></li>
-                        <li><a runat="server" href="~/PaginaPrincipal">Tablas</a></li>
+                        <li><a runat="server" href="~/PaginaPrincipal">Home</a></li>
+                        <li><a runat="server" href="~/Informe">Report</a></li>
+              
                     </ul>
                     <asp:LoginView runat="server" ViewStateMode="Disabled">
                         <AnonymousTemplate>
                             <ul class="nav navbar-nav navbar-right">
-                                <li><a href="Editar.aspx"><span class="glyphicon glyphicon-pencil"></span>Añadir</a></li>
-                                <li><a href="InicioSesion.aspx" role="button" onclick="Cerrar"><span class="glyphicon glyphicon-log-in"></span>Cerrar sesion</a></li>
+                                <li><a href="Insertar.aspx"><span class="glyphicon glyphicon-pencil"></span> Insert</a></li>
+                                <li><a href="InicioSesion.aspx" role="button" onclick="Cerrar"><span class="glyphicon glyphicon-log-in"></span> Log Out</a></li>
                             </ul>
                         </AnonymousTemplate>
                         <LoggedInTemplate>
                             <ul class="nav navbar-nav navbar-right">
                                 <li><a runat="server" href="~/Account/Manage" title="Manage your account">Hello, <%: Context.User.Identity.GetUserName()  %>!</a></li>
                                 <li>
-                                    <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Cerrar sesión" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
+                                    <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log out" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
                                 </li>
                             </ul>
                         </LoggedInTemplate>
@@ -114,7 +114,7 @@
             <footer>
                 <p>
                     &copy;
-                        <%: DateTime.Now.Year %> - Alojamientos ASP.NET
+                        <%: DateTime.Now.Year %> - Lodging ASP.NET
                 </p>
             </footer>
         </div>

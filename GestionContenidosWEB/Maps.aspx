@@ -37,7 +37,7 @@
     </div>
     <br />
     <br />
-    <asp:Button ID="btn_volver" runat="server" Text="Volver" CssClass="btn btn-success" />
+    <asp:Button ID="btn_volver" runat="server" Text="Back" CssClass="btn btn-success" />
 
     <script src='https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyASq8YmttACgZGX3HVwu-8eB37gtmhYqmY'></script>
     <script type='text/javascript' src='https://embedmaps.com/google-maps-authorization/script.js?id=90618ad7fb561a698b3c0704fe6443dbc6b77a0b'></script>

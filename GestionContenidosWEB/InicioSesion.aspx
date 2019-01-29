@@ -15,6 +15,9 @@
                
                 background-repeat: no-repeat;
             }
+            #btnInicio{
+                max-width : 125px;
+            }
         </style>
     </head>
 
@@ -32,9 +35,9 @@
 
             <form id="form1" runat="server" class="form-horizontal">
                 <div class="form-group">
-                    <asp:Label ID="lblNombre" runat="server" Text="Nombre" CssClass="control-label col-sm-2"></asp:Label>
+                    <asp:Label ID="lblNombre" runat="server" Text="Name" CssClass="control-label col-sm-2"></asp:Label>
                     <div class="col-sm-10">
-                        <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" placeholder="Nombre"></asp:TextBox>
+                        <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" placeholder="Name"></asp:TextBox>
                     </div>
                 </div>
                 <div class="form-group">
@@ -49,8 +52,12 @@
                             <asp:Label ID="lblMensaje" runat="server" Font-Bold="True" Font-Underline="False" ForeColor="Red" Class="label2"></asp:Label>
                         </div>
                     </div>
-
-                    <asp:Button ID="btnInicio" runat="server" Text="Iniciar" CssClass="form-control btn btn-primary" />
+                    <div class="row">
+                        <div class="col-xs-12 text-center">
+                            <asp:Button ID="btnInicio" runat="server" Text="Log In" CssClass="form-control btn btn-primary" />
+                        </div>
+                    </div>
+                    
                 </div>
 
             </form>
